@@ -1,0 +1,19 @@
+language: java
+branches:
+  except:
+    - "/^[0-9]/"
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+script:
+  - ./gradlew --no-daemon clean jar
+notifications:
+  email:
+    recipients:
+      - jorge.diazbenitosoriano@gmail.com
+    on_success: change
+    on_failure: always
